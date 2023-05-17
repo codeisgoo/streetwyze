@@ -3,7 +3,7 @@ class AssersController < ApplicationController
   def index
     @assers = Asser.all
   end
-  
+
   def new
     @asser = Asser.new
   end

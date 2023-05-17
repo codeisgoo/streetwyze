@@ -11,9 +11,8 @@ Rails.application.routes.draw do
   # resources :assers
   # resources :stores
   resources :assers do
-    resources :stories, only: [:new, :create]
+    resources :stories, only: %i[new create]
   end
-  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
