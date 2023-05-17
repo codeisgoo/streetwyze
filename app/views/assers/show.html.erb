@@ -1,0 +1,41 @@
+<%
+=begin%>
+ <h2>Share Story</h2>
+
+<p>Asset Address: <%= @asser.address %></p>
+<p>Asset Place Name: <%= @asser.place_name %></p>
+
+<%= form_with(model: @story, url: asser_stories_path(@asser), local: true) do |form| %>
+  <%= form.hidden_field :asser_id, value: @asser.id %>
+
+  <div>
+    <%= form.label :type_of_stuff, "Type of Stuff:" %>
+    <%= form.select :type_of_stuff, ['Good', 'Bad', 'Fix'], prompt: "Select one", required: true %>
+  </div>
+
+  <div>
+    <%= form.label :category, "Category:" %>
+    <%= form.select :category, ['Art', 'Business', 'Child Care', 'Education', 'Environment', 'Food', 'Health', 'Housing', 'Industry', 'Safety', 'Transportation'], prompt: "Select one", required: true %>
+  </div>
+
+  <div>
+    <%= form.label :rating, "Rating:" %>
+    <%= form.number_field :rating, in: 0..5, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :story_description, "Story Description:" %>
+    <%= form.text_area :story_description, maxlength: 2000 %>
+  </div>
+
+  <div>
+    <%= form.label :media, "Media:" %>
+    <%= form.file_field :media %>
+  </div>
+
+  <div>
+    <%= form.submit "Share",class: 'btn btn-primary' %>
+  </div>
+<% end %> 
+<%
+=end%>

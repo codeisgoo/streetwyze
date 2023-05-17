@@ -1,0 +1,33 @@
+<h1>All Assets</h1>
+
+
+<button style="margin: 10px; padding: 5px 10px;" class="btn btn-secondary text-danger"><%= link_to "Select to go to Creation page",new_asser_path %> </button>
+
+<%
+=begin%>
+ <%= link_to "button",new_asser_path %> 
+<%
+=end%>
+
+
+<% @assers.each do |asset| %>
+  <div class="asset">
+    <h2><%= asset.place_name %></h2>
+    <p><strong>Address:</strong> <%= asset.address %></p>
+    <p><strong>Type of Stuff:</strong> <%= asset.type_of_stuff %></p>
+    <p><strong>Category:</strong> <%= asset.category %></p>
+    <p><strong>Rating:</strong> <%= asset.rating %></p>
+    <% if asset.story_description.present? %>
+      <p><strong>Story Description:</strong> <%= asset.story_description %></p>
+    <% end %>
+    <%= link_to "button", new_asser_story_url(asset) %> 
+    <%
+=begin%>
+ <% if asset.media.attached? && asset.media.variable? %>
+      <p><strong>Media:</strong></p>
+      <%= image_tag asset.media %>
+    <% end %> 
+<%
+=end%>
+  </div>
+<% end %>
