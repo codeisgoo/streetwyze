@@ -1,0 +1,8 @@
+<h1><%= @survey.title %></h1>
+
+<p><%= @survey.survey_script %></p>
+
+<h2>Questions</h2>
+<% @survey.questions.each do |question| %>
+  <h3><%= question.content %></h3>
+<% end %>

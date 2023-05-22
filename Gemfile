@@ -59,3 +59,6 @@ end
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'cocoon'
+gem 'jquery-rails'
+gem 'pg_search'

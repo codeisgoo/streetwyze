@@ -1,0 +1,8 @@
+<h1>Profile</h1>
+
+<p><strong>Email:</strong> <%= @user.email %></p>
+<p><strong>Contact Number:</strong> <%= @user.contact_number %></p>
+<p><strong>Username:</strong> <%= @user.username %></p>
+
+<%= link_to 'Edit Username', edit_profile_path %>
+<%= link_to 'Change Password', change_password_profile_path %>

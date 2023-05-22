@@ -1,0 +1,10 @@
+<%= form_with(model: @question, url: survey_questions_path(@survey), method: :post) do |form| %>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+
+  <%= form.hidden_field :question_type, value: 'Multiple Choice' %>
+  
+  <!-- Add/remove options code here -->
+
+  <%= form.button :submit, 'Create Question' %>
+<% end %>

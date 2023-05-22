@@ -1,0 +1,19 @@
+<!-- app/views/questions/multiple_choice.html.erb -->
+
+<h2>Multiple Choice Question</h2>
+
+<%= form_with(model: @question, url: questions_path, method: :post) do |form| %>
+  <%= form.label :content, 'Question Body' %>
+  <%= form.text_area :content %>
+
+  <!-- Option fields -->
+  <%= form.fields_for :options do |option_form| %>
+    <%= option_form.label :content, 'Option' %>
+    <%= option_form.text_field :content %>
+    <%= option_form.check_box :_destroy %>
+    <%= option_form.label :_destroy, 'Remove' %>
+  <% end %>
+  <%= link_to_add_association 'Add Option', form, :options %>
+
+  <%= form.submit 'Add Question' %>
+<% end %>

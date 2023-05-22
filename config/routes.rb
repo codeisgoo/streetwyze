@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -7,12 +5,36 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  root 'assers#index'
+  root 'assers#welcome'
   # resources :assers
   # resources :stores
   resources :assers do
-    resources :stories, only: %i[new create]
+    resources :stories
+  end
+  
+
+  # resources :assers do
+  #   collection do
+  #     get 'filter'
+  #   end
+  # end
+  
+
+  
+  resource :profile, only: [:show, :edit, :update] do
+    get 'change_password', to: 'profiles#update_password'
   end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+
+  resources :surveys, only: [:index, :new, :create,:show] do
+    resources :questions, only: [:new, :create]
+  end
+
+
+
+
+  
+
+
 end

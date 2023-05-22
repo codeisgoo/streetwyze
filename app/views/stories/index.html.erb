@@ -1,0 +1,20 @@
+<!-- app/views/stories/index.html.erb -->
+
+<h1>All Stories</h1>
+
+
+<div class="stories-container">
+<% @stories.each do |asset| %>
+  <div class="asset"><br/>
+      <div class="asset-details">
+    <h2><%= asset.place_name %></h2>
+    <p><strong>Address:</strong> <%= asset.address %></p>
+    <p><strong>Type of Stuff:</strong> <%= asset.type_of_stuff %></p>
+    <p><strong>Category:</strong> <%= asset.category %></p>
+    <p><strong>Rating:</strong> <%= asset.rating %></p>
+    <% if asset.story_description.present? %>
+      <p><strong>Story Description:</strong> <%= asset.story_description %></p>
+    <% end %>
+    <hr>
+  </div>
+<% end %>

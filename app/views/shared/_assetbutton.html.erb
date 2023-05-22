@@ -57,20 +57,10 @@
     <%= form.select :category, ["",'Art', 'Business', 'Child Care', 'Education', 'Environment', 'Food', 'Health', 'Housing', 'Industry', 'Safety', 'Transportation'], required: true %>
   </div>
 <br/>
- <label for="rating">Rating:</label><br>
-<input type="radio" id="rating_1" name="rating" value="1">
-<label for="rating_1">1</label><br>
-<input type="radio" id="rating_2" name="rating" value="2">
-<label for="rating_2">2</label><br>
-<input type="radio" id="rating_3" name="rating" value="3">
-<label for="rating_3">3</label><br>
-<input type="radio" id="rating_4" name="rating" value="4">
-<label for="rating_4">4</label><br>
-<input type="radio" id="rating_5" name="rating" value="5">
-<label for="rating_5">5</label><br>
-<input type="radio" id="rating_none" name="rating" value="" checked>
-<label for="rating_none">I don't want to leave a rating</label><br>
-
+ <div class="field">
+    <%= form.label :rating %>
+    <%= form.select :rating, [nil, 1, 2, 3, 4, 5], include_blank: true %>
+  </div>
 <br/>
   <div class="field">
     <%= form.label :story_description %><br/>
