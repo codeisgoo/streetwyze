@@ -1,13 +1,6 @@
-# app/models/survey.rb
 class Survey < ApplicationRecord
-    belongs_to :user
-    has_many :questions, dependent: :destroy
-    accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
-  
-    validates :title, presence: true
-    validates :survey_script, presence: true
-  
-    attribute :published, :boolean, default: false
-
-  end
+  has_many :questions, dependent: :destroy
+  belongs_to :user 
+  accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
+end
   

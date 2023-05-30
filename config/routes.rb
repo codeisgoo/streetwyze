@@ -1,36 +1,52 @@
 Rails.application.routes.draw do
+  
   devise_for :users, controllers: {
+    registrations: 'users/registrations',
     sessions: 'users/sessions',
     passwords: 'users/passwords',
-    registrations: 'users/registrations'
+
   }
+
+  devise_scope :user do
+    get '/users/sign_out', to: 'users/sessions#destroy', as: :sign_out
+  end
 
   root 'assers#welcome'
   # resources :assers
   # resources :stores
-  resources :assers do
-    resources :stories
-  end
-  
-
   # resources :assers do
-  #   collection do
-  #     get 'filter'
-  #   end
+  #   resources :stories
   # end
-  
 
+
+
+  get 'checkout' , to: 'checkouts#show'
+  get 'checkout/success' , to: 'checkouts#success'
+
+  resources :assers do
+    resources :stories do
+      collection do
+        get :export_csv
+      end
+    end
+  end
   
-  resource :profile, only: [:show, :edit, :update] do
-    get 'change_password', to: 'profiles#update_password'
+  
+  resource :profile, only: [:edit, :update] do
+    get 'change_username'
+    patch 'update_username'
+  
+    get 'change_password'
+    patch 'update_password'
   end
 
 
+  
 
-  resources :surveys, only: [:index, :new, :create,:show] do
-    resources :questions, only: [:new, :create]
+  resources :surveys
+  resources :questions do
+    resources :answers
   end
-
 
 
 

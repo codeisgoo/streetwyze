@@ -1,0 +1,10 @@
+<h1>Delete Story</h1>
+
+<p>Are you sure you want to delete this story?</p>
+
+<%= link_to 'Cancel', asser_stories_path(@asser) %>
+<%= button_to 'Delete', asser_story_path(@asser, @story), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+
+

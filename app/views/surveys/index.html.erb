@@ -1,15 +1,9 @@
-<h1>Surveys</h1>
+<h1>All Surveys</h1>
 
 <% @surveys.each do |survey| %>
   <div class="survey">
     <h3><%= link_to survey.title, survey_path(survey) %></h3>
-    <p><%= survey.survey_script %></p>
-    <% if survey.published %>
-      <p>Status: Published</p>
-    <% else %>
-      <p>Status: Draft</p>
-    <% end %>
+    <p><strong>Survey Script:</strong> <%= survey.survey_script %></p>
+    <!-- Additional survey details or options -->
   </div>
 <% end %>
-
-<%= link_to 'Create Survey', new_survey_path, class: 'btn btn-primary' %>

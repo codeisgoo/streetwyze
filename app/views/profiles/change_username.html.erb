@@ -1,0 +1,10 @@
+<h1>Change Username</h1>
+
+<%= form_for @user, url: update_username_profile_path, method: :patch, id: 'username-form' do |f| %>
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <%= f.submit 'Update', class: 'btn btn-primary' %>
+<% end %>

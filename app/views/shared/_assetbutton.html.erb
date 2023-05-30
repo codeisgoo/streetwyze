@@ -67,9 +67,10 @@
     <%= form.text_area :story_description, maxlength: 2000 %>
   </div>
 <br/>
-
-<label for="media">Media:</label>
-<input type="file" id="media" name="media">
+<div class="field">
+    <%= form.label :media %>
+    <%= form.file_field :media %>
+  </div>
 
 <br/>
   <div class="actions"><br/>

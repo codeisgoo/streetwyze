@@ -1,0 +1,23 @@
+<%= form_with(model: @survey, url: surveys_path, local: true, html: { class: 'form' }) do |f| %>
+  <div class="form-group">
+    <%= f.label :title, class: 'control-label' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :survey_script, class: 'control-label' %>
+    <%= f.text_area :survey_script, class: 'form-control' %>
+  </div>
+
+  <h3>Questions</h3>
+  <div id="questions">
+    <%= f.fields_for :questions do |question_fields| %>
+      <%= render 'question_fields', f: question_fields %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= link_to_add_association 'Add Question', f, :questions, class: 'btn btn-primary' %>
+    <%= f.submit 'Publish', class: 'btn btn-success' %>
+  </div>
+<% end %>

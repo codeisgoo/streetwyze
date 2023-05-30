@@ -1,8 +1,24 @@
-<h1><%= @survey.title %></h1>
+<h1>Survey Details</h1>
+<p><strong>Title:</strong> <%= @survey.title %></p>
+<p><strong>Survey Script:</strong> <%= @survey.survey_script %></p>
 
-<p><%= @survey.survey_script %></p>
-
-<h2>Questions</h2>
 <% @survey.questions.each do |question| %>
-  <h3><%= question.content %></h3>
+  <h2>Question:</h2>
+  <p><strong>Question Body:</strong> <%= question.question_body %></p>
+  
+  <% if question.question_type == 'Open Ended' %>
+    <div class="answer-area">
+      <%= form_with(model: Answer.new, url: { controller: 'answers', action: 'create', question_id: question.id }, local: true) do |form| %>
+        <%= form.text_area :body, rows: 3, placeholder: 'Enter your answer' %>
+        <%= form.submit 'Submit' %>
+      <% end %>
+    </div>
+  <% elsif question.question_type == 'Multiple Choice' %>
+    <h3>Possible Answers:</h3>
+    <% question.answers.each do |answer| %>
+      <p><strong>Answer:</strong> <%= answer.body %></p>
+    <% end %>
+  <% end %>
+
+  <hr>
 <% end %>

@@ -62,3 +62,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'cocoon'
 gem 'jquery-rails'
 gem 'pg_search'
+gem 'csv'
+
+
+
+gem "stripe", "~> 8.5"
+gem "pay", "~> 6.5"

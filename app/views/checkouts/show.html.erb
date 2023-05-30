@@ -1,0 +1,7 @@
+<h3>Click to Buy Subscription<h3>
+
+
+<%= render partial:'pay/stripe/checkout_button',locals:{
+    session: @checkout_session,
+    title: "Buy Now"
+} %>

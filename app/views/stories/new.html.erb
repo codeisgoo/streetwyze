@@ -5,42 +5,40 @@
 
 <%= form_with(model: @story, url: asser_stories_path(@asser), local: true) do |form| %>
   <%= form.hidden_field :asser_id, value: @asser.id %>
-<br/>
-  <%= form.hidden_field @asser.address %></p>
-  <%= form.hidden_field @asser.place_name %></p>
-  <div>
-    <%= form.label :type_of_stuff, "Type of Stuff:" %><br/>
-    <%= form.select :type_of_stuff, ['Good', 'Bad', 'Fix'], prompt: "Select one", required: true %>
+  <br/>
+  <%= form.hidden_field @asser.address %>
+  <%= form.hidden_field @asser.place_name %>
+
+  <div class="form-group">
+    <%= form.label :type_of_stuff, "Type of Stuff:" %>
+    <%= form.select :type_of_stuff, ['Good', 'Bad', 'Fix'], prompt: "Select one", required: true, class: "form-control" %>
   </div>
-<br/>
-  <div>
-    <%= form.label :category, "Category:" %><br/>
-    <%= form.select :category, ['Art', 'Business', 'Child Care', 'Education', 'Environment', 'Food', 'Health', 'Housing', 'Industry', 'Safety', 'Transportation'], prompt: "Select one", required: true %>
+  <br/>
+  <div class="form-group">
+    <%= form.label :category, "Category:" %>
+    <%= form.select :category, ['Art', 'Business', 'Child Care', 'Education', 'Environment', 'Food', 'Health', 'Housing', 'Industry', 'Safety', 'Transportation'], prompt: "Select one", required: true, class: "form-control" %>
   </div>
-<br/>
-  <div class="field">
+  <br/>
+  <div class="form-group">
     <%= form.label :rating %>
-    <%= form.select :rating, [nil, 1, 2, 3, 4, 5], include_blank: true %>
+    <%= form.select :rating, [nil, 1, 2, 3, 4, 5], include_blank: true, class: "form-control" %>
   </div>
-<br/>
+  <br/>
+  <div class="form-group">
+    <%= form.label :story_description, "Story Description:" %>
+    <%= form.text_area :story_description, maxlength: 2000, class: "form-control" %>
+  </div>
+  <br/>
+  <div class="form-group">
+    <%= form.label :media, "Media:" %>
+    <%= form.file_field :media, class: "form-control-file" %>
+  </div>
+  <br/>
   <div>
-    <%= form.label :story_description, "Story Description:" %><br/>
-    <%= form.text_area :story_description, maxlength: 2000 %>
+    <%= form.submit "Share", class: 'btn btn-primary' %>
   </div>
-<br/>
-  <div>
-    <%= form.label :media, "Media:" %><br/>
-    <%= form.file_field :media %>
-  </div>
-<br/>
-  <div>
-    <%= form.submit "Share",class: 'btn btn-primary' %><br/>
-  </div>
+
+
 <% end %>
 
-
-<%
-=begin%>
- <%= render 'form', story: @story %> 
-<%
-=end%>
+<%#= render 'form', story: @story %>

@@ -1,27 +1,37 @@
+<%= form_tag assers_path, method: :get, class: "form-inline" do %>
+  <div class="form-group">
+    <label for="category">Category:</label>
+    <%= select_tag :category, options_for_select([['All', ''], "Art", "Business", "Child Care", "Education", "Environment", "Food", "Health", "Housing", "Industry", "Safety", "Transportation"], params[:category]), class: "form-control" %>
+  </div>
 
-<h1>All Assets</h1>
+  <div class="form-group">
+    <label for="type_of_stuff">Type of Stuff:</label>
+    <%= select_tag :type_of_stuff, options_for_select([['All', ''], 'Good', 'Bad','Fix'], params[:type_of_stuff]), class: "form-control" %>
+  </div>
 
+  <div class="form-group">
+    <label for="media">Media:</label>
+    <%= select_tag :media, options_for_select([['All', ''], 'With Media'], params[:media]), class: "form-control" %>
+  </div>
 
+  <div class="form-group">
+    <label for="author">Author:</label>
+    <%= select_tag :author, options_for_select([['All', ''], 'Only Me'], params[:author]), class: "form-control" %>
+  </div>
 
+  <div class="form-group">
+    <label for="date">Date Created:</label>
+    <%= select_tag :date, options_for_select([['All', ''], 'Today', 'Yesterday', 'Last 7 days', 'Last 30 days', 'This Month', 'Last Month', 'Custom Range'], params[:date]), class: "form-control" %>
+  </div>
 
-<%= form_tag assers_path, method: :get do %>
-  <label>Category:</label>
-  <%= select_tag :category, options_for_select([['All', ''], "Art", "Business", "Child Care", "Education", "Environment", "Food", "Health", "Housing", "Industry", "Safety", "Transportation"], params[:category]) %>
+  <div class="form-group">
+    <%= text_field_tag :start_date, params[:start_date], placeholder: 'Start Date', class: 'form-control datepicker' %>
+  </div>
 
-<label>Type of Stuff:</label>
-<%= select_tag :type_of_stuff, options_for_select([['All', ''], 'Good', 'Bad','Fix'], params[:type_of_stuff]) %>
+  <div class="form-group">
+    <%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: 'form-control datepicker' %>
+  </div>
 
-
-<label>Media:</label>
-<%= select_tag :media, options_for_select([['All', ''], 'With Media', 'Without Media'], params[:media]) %>
-
-<label>Author:</label>
-<%= select_tag :author, options_for_select([['All', ''], 'Only Me'], params[:author]) %>
-
-<label>Date Created:</label>
-<%= select_tag :date, options_for_select([['All', ''], 'Today', 'Yesterday', 'Last 7 days', 'Last 30 days', 'This Month', 'Last Month', 'Custom Range'], params[:date]) %>
-<%= text_field_tag :start_date, params[:start_date], placeholder: 'Start Date', class: 'datepicker' %>
-<%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: 'datepicker' %>
-
-<%= submit_tag 'Filter' %>
+  <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+  <%= link_to "Clear Filters", assers_path(@asser), class: "btn btn-secondary" %>
 <% end %>

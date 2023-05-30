@@ -1,21 +1,27 @@
-<h1>Create Survey</h1>
+<h1>Create a New Survey</h1>
+<br/>
 
-<%= form_with(model: @survey, url: surveys_path, method: :post) do |form| %>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
-
-  <%= form.label :survey_script %>
-  <%= form.text_area :survey_script %>
-
-  <h2>Questions</h2>
-  <%= form.fields_for :questions do |question_form| %>
-    <%= question_form.label :content %>
-    <%= question_form.text_area :content %>
-    <%= question_form.hidden_field :question_type, value: 'Open-Ended' %>
-
-    <%= render 'open_ended_options', question_form: question_form %>
-    <%= render 'multiple_choice_options', question_form: question_form %>
-  <% end %>
-
-  <%= form.submit 'Publish' %>
+<%= form_with(model: @survey, url: surveys_path, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </div>
+  <br/>
+  <div class="field">
+    <%= f.label :survey_script %><br/>
+    <%= f.text_area :survey_script %>
+  </div>
+  <br/>
+  <div id="questions">
+    <%= f.fields_for :questions do |question_form| %>
+      <%= render 'question_fields', f: question_form %>
+    <% end %>
+  </div>
+  <br/>
+  <div class="actions">
+    <br/>
+    <%= link_to_add_association 'Add Question', f, :questions, class: 'btn btn-primary', data: { association_insertion_node: "#questions", association_insertion_method: :append } %>
+    <br/>
+    <%= f.submit "Publish", class: 'btn btn-success' %>
+  </div>
 <% end %>

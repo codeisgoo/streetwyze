@@ -7,7 +7,7 @@
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-group">
-            <%= f.label :email,class: 'mb-2' %>
+            <%= f.label :email_or_contact,class: 'mb-2' %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
           </div>
 

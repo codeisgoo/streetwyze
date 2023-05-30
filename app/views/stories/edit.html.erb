@@ -1,0 +1,33 @@
+<h1>Edit Story</h1>
+
+<%= form_with(model: @story, url: asser_story_path(@asser, @story), method: :patch) do |form| %>
+  <br/>
+  <%= form.label :place_name %><br/>
+  <%= form.text_field :place_name %>
+  <br/>
+  <%= form.label :address %><br/>
+  <%= form.text_field :address %>
+
+  <br/>
+  <div class="field">
+    <%= form.label :type_of_stuff %><br/>
+    <%= form.select :type_of_stuff, ['Good', 'Bad', 'Fix'], required: true %>
+  </div>
+  <br/>
+  <div class="field">
+    <%= form.label :category %><br/>
+    <%= form.select :category, ["", 'Art', 'Business', 'Child Care', 'Education', 'Environment', 'Food', 'Health', 'Housing', 'Industry', 'Safety', 'Transportation'], required: true %>
+  </div>
+  <br/>
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.select :rating, [nil, 1, 2, 3, 4, 5], include_blank: true %>
+  </div>
+  <br/>
+  <div class="field">
+    <%= form.label :story_description %><br/>
+    <%= form.text_area :story_description, maxlength: 2000 %>
+  </div>
+
+  <%= form.submit "Update Story" %>
+<% end %>

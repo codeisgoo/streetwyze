@@ -1,30 +1,30 @@
-
-
+<div class="container">
+  <%= render "assers/filters" %>
   
- <%= render "assers/filters"%>
+<%= link_to 'Export CSV', assers_path(format: :csv), class: 'btn btn-primary' %>
 
 
-
-<div class="assets-container">
-<% @assers.each do |asset| %>
-  <div class="asset"><br/>
-      <div class="asset-details">
-    <h2><%= asset.place_name %></h2>
-    <p><strong>ID No : </strong> <%= asset.id %></p>
-    <p><strong>Address:</strong> <%= asset.address %></p>
-    <p><strong>Type of Stuff:</strong> <%= asset.type_of_stuff %></p>
-    <p><strong>Category:</strong> <%= asset.category %></p>
-    <p><strong>Rating:</strong> <%= asset.rating %></p>
-    <% if asset.story_description.present? %>
-      <p><strong>Story Description:</strong> <%= asset.story_description %></p>
+  <div class="row">
+    <% @assers.each do |asset| %>
+      <div class="col-md-3">
+        <div class="asset">
+          <div class="asset-details">
+            <h2><%= asset.place_name %></h2>
+            <p><strong>ID No:</strong> <%= asset.id %></p>
+            <p><strong>Address:</strong> <%= asset.address %></p>
+            <p><strong>Type of Stuff:</strong> <%= asset.type_of_stuff %></p>
+            <p><strong>Category:</strong> <%= asset.category %></p>
+            <p><strong>Rating:</strong> <%= asset.rating %></p>
+            <% if asset.story_description.present? %>
+              <p><strong>Story Description:</strong> <%= asset.story_description %></p>
+            <% end %>
+            <p><strong>Created At:</strong> <%= asset.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
+            <%= link_to "Edit", edit_asser_path(asset), class: "btn btn-primary" %>
+            <%= button_to 'Delete', asser_path(asset), method: :delete, data: { confirm: 'Are you sure you want to delete this asset?' }, class: 'btn btn-danger' %>
+            <%= link_to "Share Story", new_asser_story_url(asset), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-    <p><strong>Created At: </strong><%= asset.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
-
-      <%= link_to "Edit", edit_asser_path(asset) %>
-      <%= button_to 'Delete', asser_path(asset), method: :delete, data: { confirm: 'Are you sure you want to delete this asset?' }, class: 'delete-button' %>
-
-    <%= link_to "Share Story", new_asser_story_url(asset) %> 
   </div>
-  </div>
-  </div>
-<% end %>
+</div>
