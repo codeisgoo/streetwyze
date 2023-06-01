@@ -1,0 +1,9 @@
+<h1>All Surveys</h1>
+
+<% @surveys.each do |survey| %>
+  <div class="survey">
+    <h3><%= link_to survey.title, survey_path(survey) %></h3>
+    <p><strong>Survey Script:</strong> <%= survey.survey_script %></p>
+    <!-- Additional survey details or options -->
+  </div>
+<% end %>

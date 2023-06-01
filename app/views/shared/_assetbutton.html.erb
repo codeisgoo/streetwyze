@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <!-- Include jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Include Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  
+  <!-- Your content here -->
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAssetModal">
+    Create Asset
+  </button>
+  
+  <%
+=begin%>
+ <%= link_to "button", new_asser_story_url %> 
+<%
+=end%>
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="createAssetModal" tabindex="2" role="dialog" aria-labelledby="createAssetModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-lg">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createAssetModalLabel">Create Asset</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<%= form_for @asser do |form| %>
+  <div class="field"><br/>
+    <%= form.label :place_name %><i class="bi bi-geo-fill"></i><br/>
+    <%= form.text_field :place_name, required: true %>
+  </div>
+<br/>
+  <div class="field">
+    <%= form.label :address %><br/>
+    <%= form.text_field :address, required: true %>
+  </div>
+<br/>
+  <div class="field">
+    <%= form.label :type_of_stuff %><br/>
+    <%= form.select :type_of_stuff, ['Good', 'Bad', 'Fix'], required: true %>
+  </div>
+<br/>
+  <div class="field">
+    <%= form.label :category %><br/>
+    <%= form.select :category, ["",'Art', 'Business', 'Child Care', 'Education', 'Environment', 'Food', 'Health', 'Housing', 'Industry', 'Safety', 'Transportation'], required: true %>
+  </div>
+<br/>
+ <div class="field">
+    <%= form.label :rating %>
+    <%= form.select :rating, [nil, 1, 2, 3, 4, 5], include_blank: true %>
+  </div>
+<br/>
+  <div class="field">
+    <%= form.label :story_description %><br/>
+    <%= form.text_area :story_description, maxlength: 2000 %>
+  </div>
+<br/>
+<div class="field">
+    <%= form.label :media %>
+    <%= form.file_field :media %>
+  </div>
+
+<br/>
+  <div class="actions"><br/>
+    <%= form.submit 'Submit' %>
+  </div>
+<% end %>
+
+</body>
+</html>

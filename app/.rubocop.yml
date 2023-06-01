@@ -1,0 +1,44 @@
+Metrics/ClassLength:
+  Max: 300
+
+Metrics/AbcSize:
+  Exclude:
+    - "db/migrate/*.rb"
+
+Metrics/MethodLength:
+  Max: 15
+  CountComments: false
+  Exclude:
+    - "db/migrate/*.rb"
+
+Metrics/LineLength:
+  Max: 150
+
+Style/Documentation:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/seeds.rb'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'log/**/*'
+    - 'config/**/*'
+    - 'ng/**/*'
+    - 'node_modules/**/*'
+    - 'Gemfile'

@@ -1,0 +1,13 @@
+<p class="centered-text">
+
+  <h1>Edit Profile</h1>
+
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  <p><strong>Contact Number:</strong> <%= @user.contact_number %></p>
+  <p><strong>Username:</strong> <%= @user.username %></p>
+
+  <%= link_to 'Change Username', change_username_profile_path%> 
+  <%= link_to 'Change Password', change_password_profile_path%>
+  <%= link_to "Buy Subscription", checkout_path,class: "btn btn-success" %>
+</div>
+

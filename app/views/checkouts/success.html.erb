@@ -1,0 +1,10 @@
+<div class='container'>
+<h1>Success!</h1>
+<p>You just bought a subscription.</p>
+<h2>Your total was $<%= @session.amount_total.to_f / 100 %></h2>
+<br/>
+
+<%@line_items.each do |item|%>
+    <h3><%= item.description %></h3>
+<% end %>
+</div>

@@ -1,0 +1,10 @@
+<!-- app/views/questions/open_ended.html.erb -->
+
+<h2>Open-Ended Question</h2>
+
+<%= form_with(model: @question, url: questions_path, method: :post) do |form| %>
+  <%= form.label :content, 'Question Body' %>
+  <%= form.text_area :content %>
+
+  <%= form.submit 'Add Question' %>
+<% end %>

@@ -1,0 +1,9 @@
+<% if question_form.object.multiple_choice? %>
+  <p>Multiple Choice Question</p>
+  <%= question_form.fields_for :options do |option_form| %>
+    <%= option_form.text_field :content %>
+    <%= option_form.check_box :_destroy %>
+    <%= option_form.label :_destroy, 'Remove' %>
+  <% end %>
+  <%= link_to_add_association 'Add Option', question_form, :options %>
+<% end %>

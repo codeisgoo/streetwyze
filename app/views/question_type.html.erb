@@ -1,0 +1,10 @@
+<!-- app/views/surveys/question_type.html.erb -->
+
+<h2>Select Question Type</h2>
+
+<%= form_with(model: @survey, url: survey_path(@survey), method: :put) do |form| %>
+  <%= form.label :question_type, 'Question Type' %>
+  <%= form.select :question_type, options_for_select(['open_ended', 'multiple_choice']), prompt: 'Select a question type' %>
+
+  <%= form.submit 'Next' %>
+<% end %>

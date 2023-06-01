@@ -1,0 +1,69 @@
+<h1>All Stories</h1>
+
+<%= form_with(url: asser_stories_path(@asser), method: :get, class: "filter-form") do |form| %>
+  <div class="form-group">
+    <%= form.label :category, "Category", class: "form-label" %>
+    <%= form.select :category, options_for_select(["", "Art", "Business", "Child Care", "Education", "Environment", "Food", "Health", "Housing", "Industry", "Safety", "Transportation"], params[:category]), { include_blank: true }, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :type_of_stuff, "Type", class: "form-label" %>
+    <%= form.select :type_of_stuff, options_for_select(["", "Good", "Bad", "Fix"], params[:type_of_stuff]), { include_blank: true }, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :media, "Media", class: "form-label" %>
+    <%= form.select :media, options_for_select(["All", "With Media", "Without Media"], params[:media]), { include_blank: true }, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :author, "Author", class: "form-label" %>
+    <%= form.select :author, options_for_select(["All", "Only Me"], params[:author]), { include_blank: true }, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :date, "Date Created", class: "form-label" %>
+    <%= form.select :date, options_for_select(["All", "Today", "Yesterday", "Last 7 days", "Last 30 days", "This Month", "Last Month", "Custom Range"], params[:date]), { include_blank: true }, class: "form-control" %>
+  </div>
+  
+  <div id="custom-date-range" style="display: none;">
+    <%= form.label :start_date, "Start Date", class: "form-label" %>
+    <%= form.date_field :start_date, class: "form-control" %>
+    
+    <%= form.label :end_date, "End Date", class: "form-label" %>
+    <%= form.date_field :end_date, class: "form-control" %>
+  </div>
+  
+   <div class="btn-group" role="group" aria-label="Actions">
+    <%= form.submit "Filter", class: "btn btn-primary" %>
+    <%= link_to "Clear Filters", asser_stories_path(@asser), class: "btn btn-secondary" %><br/>
+    <%= link_to 'Export Stories CSV', asser_stories_path(@asser, format: :csv), class: 'btn btn-primary' %>
+    <%= link_to 'Export Filtered Stories CSV', asser_stories_path(@asser, format: :csv, **params.slice(:category, :type_of_stuff, :media, :date, :start_date, :end_date, :author).to_unsafe_h), class: 'btn btn-dark' %>
+  </div>
+<% end %>
+
+<div class="row">
+  <% @stories.each do |story| %>
+    <div class="col-md-3">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= story.place_name %></h5>
+          <p class="card-text"><strong>Asset Address:</strong> <%= story.asser.address %></p>
+          <p class="card-text"><strong>Asset Place Name:</strong> <%= story.asser.place_name %></p>
+          <p class="card-text"><strong>ID No:</strong> <%= story.id %></p>
+          <p class="card-text"><strong>Type of Stuff:</strong> <%= story.type_of_stuff %></p>
+          <p class="card-text"><strong>Category:</strong> <%= story.category %></p>
+          <p class="card-text"><strong>Rating:</strong> <%= story.rating %></p>
+          <% if story.story_description.present? %>
+            <p class="card-text"><strong>Story Description:</strong> <%= story.story_description %></p>
+          <% end %>
+          <p class="card-text"><strong>Created At:</strong> <%= story.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
+          <div class="btn-group" role="group" aria-label="Actions">
+
+          <%= link_to 'Edit', edit_asser_story_path(story.asser, story), class: "btn btn-primary" %>
+          <%= button_to 'Delete', asser_story_path(story.asser, story), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </div>
+        </div>
+      </div>
+    </div>
+  <% end %>

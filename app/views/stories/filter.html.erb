@@ -1,0 +1,13 @@
+<h1>Filtered Stories</h1>
+
+<% @stories.each do |asset| %>
+   <p><strong>Address:</strong> <%= asset.address %></p>
+    <p><strong>ID No : </strong> <%= asset.id %></p>
+    <p><strong>Type of Stuff:</strong> <%= asset.type_of_stuff %></p>
+    <p><strong>Category:</strong> <%= asset.category %></p>
+    <p><strong>Rating:</strong> <%= asset.rating %></p>
+    <% if asset.story_description.present? %>
+      <p><strong>Story Description:</strong> <%= asset.story_description %></p>
+    <% end %>
+    <p><strong>Created At: </strong><%= asset.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
+<% end %>
